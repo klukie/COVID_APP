@@ -1,1 +1,1 @@
-# COVID_APP
+CS 4800 Covid App
