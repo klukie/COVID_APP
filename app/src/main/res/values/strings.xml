@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Covid-19</string>
+
+    <string-array name="sex">
+        <item>Make a selection</item>
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+
+    <string-array name="ethnicity">
+        <item>Make a selection</item>
+        <item>American Indian or Alaska Native</item>
+        <item>Asian</item>
+        <item>Black or African American</item>
+        <item>Hispanic or Latino</item>
+        <item>Native Hawaiian or Other Pacific Islander</item>
+        <item>White</item>
+    </string-array>
+
+
+</resources>
