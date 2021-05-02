@@ -2,6 +2,10 @@ package com.klukie.android.covid_19
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.klukie.android.covid_19.repository.Repository
 import kotlinx.android.synthetic.main.activity_underlying.*
 
 class UnderlyingActivity : AppCompatActivity() {
@@ -15,12 +19,7 @@ class UnderlyingActivity : AppCompatActivity() {
         val age = intent.getStringExtra("age")
         val ethnicity = intent.getStringExtra("ethnicity")
 
-
-
-        //test display of data
-        //sexPass.text = sex
-        //agePass.text  = age
-        //ethnicityPass.text = ethnicity
+        lateinit var viewModel: MainViewModel
 
         //create arrayList to store all underlying
         val underlyingList : MutableList<String> = ArrayList()
@@ -29,6 +28,17 @@ class UnderlyingActivity : AppCompatActivity() {
         //everytime button is pushed it will clear the array and start fresh
         sendRequestArrow.setOnClickListener {
             underlyingList.clear()
+
+            //The first 3 elements are sex, age and ethnicity
+            if (sex != null) {
+                underlyingList.add(sex)
+            }
+            if (age != null) {
+                underlyingList.add(age)
+            }
+            if (ethnicity != null) {
+                underlyingList.add(ethnicity)
+            }
             if(asthmaBox.isChecked) {
                 underlyingList.add("Asthma")
             }
@@ -71,9 +81,17 @@ class UnderlyingActivity : AppCompatActivity() {
             for (item in underlyingList)
                 println(item)
 
+            val repository = Repository()
+            val viewModelFactory = MainViewModelFactory(repository)
+            viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+            viewModel.getPost()     //This will get the result from the function
+            //
+            viewModel.myResponse.observe(this, Observer { response ->
+                Log.d("Response", response.result.toString())
+            })
+
 
         }
-
 
     }
 
