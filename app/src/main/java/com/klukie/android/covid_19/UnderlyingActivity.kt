@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.klukie.android.covid_19.model.Post
 import com.klukie.android.covid_19.repository.Repository
 import kotlinx.android.synthetic.main.activity_underlying.*
 
@@ -123,6 +124,21 @@ class UnderlyingActivity : AppCompatActivity() {
                 Log.d("Response", response.toString())
             })
 
+
+            //-------------------------------------
+            //POST POST POST
+            //TEST TEST TEST
+            val myPost = Post(10, 2, "Ryan", "Software Class")
+            viewModel.pushPost(myPost)
+            viewModel.myResponse.observe(this, Observer { response ->
+                if (response.isSuccessful) {
+                    Log.d("Main", response.body()?.userId.toString())
+                    Log.d("Main", response.code().toString())
+                    Log.d("Main", response.message())
+                } else {
+                    Log.d("Response", response.errorBody().toString())
+                }
+            })
 
 
 
