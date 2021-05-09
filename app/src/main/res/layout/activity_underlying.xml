@@ -247,6 +247,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/left" />
 
+<<<<<<< HEAD
     <TextView
         android:id="@+id/tv1"
         android:layout_width="wrap_content"
@@ -279,5 +280,7 @@
         app:layout_constraintEnd_toStartOf="@+id/sendRequestArrow"
         app:layout_constraintStart_toEndOf="@+id/backToMainButton" />
 
+=======
+>>>>>>> ebafdee5615215a50baddbc2e1f0afe67e3ab544
 
 </androidx.constraintlayout.widget.ConstraintLayout>
