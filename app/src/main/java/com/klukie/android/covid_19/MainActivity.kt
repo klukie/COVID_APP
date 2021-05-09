@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import com.klukie.android.covid_19.R.layout.support_simple_spinner_dropdown_item
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.ArrayList
 
@@ -66,7 +65,7 @@ class MainActivity : AppCompatActivity() {
             ageList.add(i.toString())
 
         val adapter : ArrayAdapter<String> = ArrayAdapter(this,
-                support_simple_spinner_dropdown_item, ageList)
+                R.layout.support_simple_spinner_dropdown_item, ageList)
         ageSpinner.adapter = adapter
 
         ageSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {

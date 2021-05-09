@@ -26,10 +26,7 @@ class UnderlyingActivity : AppCompatActivity() {
         val age = intent.getStringExtra("age")
         val ethnicity = intent.getStringExtra("ethnicity")
 
-<<<<<<< HEAD
         lateinit var viewModel: MainViewModel
-=======
->>>>>>> ebafdee5615215a50baddbc2e1f0afe67e3ab544
 
         //create arrayList to store all underlying
         val underlyingList : MutableList<String> = ArrayList()
@@ -62,7 +59,6 @@ class UnderlyingActivity : AppCompatActivity() {
 
         //after button pushed ifChecked will populate the array
         //everytime button is pushed it will clear the array and start fresh
-        //TODO need to convert to 1's and 2's to send POST Request
         sendRequestArrow.setOnClickListener {
             underlyingList.clear()
 
