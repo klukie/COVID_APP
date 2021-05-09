@@ -3,6 +3,7 @@ package com.klukie.android.covid_19
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.klukie.android.covid_19.repository.Repository
@@ -112,20 +113,18 @@ class UnderlyingActivity : AppCompatActivity() {
             for (item in underlyingList)
                 println(item)
 
-<<<<<<< Updated upstream
+
             val repository = Repository()
             val viewModelFactory = MainViewModelFactory(repository)
             viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
             viewModel.getPost()     //This will get the result from the function
             //
             viewModel.myResponse.observe(this, Observer { response ->
-                Log.d("Response", response.result.toString())
+                Log.d("Response", response.toString())
             })
-=======
-            //this is to test the GET is should show in LogCat
 
 
->>>>>>> Stashed changes
+
 
 
         }

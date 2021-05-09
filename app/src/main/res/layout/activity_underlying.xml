@@ -248,57 +248,34 @@
         app:srcCompat="@drawable/left" />
 
     <TextView
-<<<<<<< Updated upstream
-        android:id="@+id/ethnicityPass"
-=======
         android:id="@+id/tv1"
->>>>>>> Stashed changes
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
         android:text="TextView"
-<<<<<<< Updated upstream
-=======
         android:textAlignment="center"
         android:textSize="8dp"
->>>>>>> Stashed changes
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sendRequestArrow"
         app:layout_constraintStart_toEndOf="@+id/backToMainButton" />
 
     <TextView
-<<<<<<< Updated upstream
-        android:id="@+id/agePass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/ethnicityPass"
-=======
         android:id="@+id/tv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/tv1"
->>>>>>> Stashed changes
         app:layout_constraintEnd_toStartOf="@+id/sendRequestArrow"
         app:layout_constraintStart_toEndOf="@+id/backToMainButton" />
 
     <TextView
-<<<<<<< Updated upstream
-        android:id="@+id/sexPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/agePass"
-=======
         android:id="@+id/tv3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/tv2"
->>>>>>> Stashed changes
         app:layout_constraintEnd_toStartOf="@+id/sendRequestArrow"
         app:layout_constraintStart_toEndOf="@+id/backToMainButton" />
 
