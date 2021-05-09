@@ -16,17 +16,12 @@ class UnderlyingActivity : AppCompatActivity() {
         val ethnicity = intent.getStringExtra("ethnicity")
 
 
-
-        //test display of data
-        //sexPass.text = sex
-        //agePass.text  = age
-        //ethnicityPass.text = ethnicity
-
         //create arrayList to store all underlying
         val underlyingList : MutableList<String> = ArrayList()
 
         //after button pushed ifChecked will populate the array
         //everytime button is pushed it will clear the array and start fresh
+        //TODO need to convert to 1's and 2's to send POST Request
         sendRequestArrow.setOnClickListener {
             underlyingList.clear()
             if(asthmaBox.isChecked) {
