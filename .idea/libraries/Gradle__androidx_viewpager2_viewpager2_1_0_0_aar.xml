@@ -5,8 +5,13 @@
     </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ea6cbc4cb664664f38d279035c5a9ecb/jetified-viewpager2-1.0.0/jars/classes.jar!/" />
+<<<<<<< HEAD
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ea6cbc4cb664664f38d279035c5a9ecb/jetified-viewpager2-1.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ea6cbc4cb664664f38d279035c5a9ecb/jetified-viewpager2-1.0.0/AndroidManifest.xml" />
+=======
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ea6cbc4cb664664f38d279035c5a9ecb/jetified-viewpager2-1.0.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ea6cbc4cb664664f38d279035c5a9ecb/jetified-viewpager2-1.0.0/res" />
+>>>>>>> ebafdee5615215a50baddbc2e1f0afe67e3ab544
     </CLASSES>
     <JAVADOC />
     <SOURCES>
