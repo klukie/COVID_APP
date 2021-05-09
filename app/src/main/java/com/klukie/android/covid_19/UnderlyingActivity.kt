@@ -9,6 +9,11 @@ import com.klukie.android.covid_19.repository.Repository
 import kotlinx.android.synthetic.main.activity_underlying.*
 
 class UnderlyingActivity : AppCompatActivity() {
+
+    //these are the variables foe the GET test
+    private lateinit var viewModel: MainViewModel
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_underlying)
@@ -23,6 +28,32 @@ class UnderlyingActivity : AppCompatActivity() {
 
         //create arrayList to store all underlying
         val underlyingList : MutableList<String> = ArrayList()
+
+
+        //TEST TEST TEST TEST
+        //should display on the bottom of the second page
+        //These are for the GET test
+        val repository = Repository()
+        val viewModelFactory = MainViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, viewModelFactory)
+            .get(MainViewModel::class.java)
+        viewModel.getPost()
+        viewModel.myResponse.observe(this, Observer { response ->
+            if (response.isSuccessful) {
+                Log.d("Response", response.body()?.userId.toString())
+                tv3.text = response.body()?.userId.toString()
+                Log.d("Response", response.body()?.id.toString())
+                tv2.text = response.body()?.id.toString()
+                Log.d("Response", response.body()?.title!!)
+                tv1.text = response.body()?.title!!
+                Log.d("Response", response.body()?.body!!)
+            } else {
+                Log.d("Response", response.errorBody().toString())
+            }
+        })
+
+
+
 
         //after button pushed ifChecked will populate the array
         //everytime button is pushed it will clear the array and start fresh
@@ -81,6 +112,7 @@ class UnderlyingActivity : AppCompatActivity() {
             for (item in underlyingList)
                 println(item)
 
+<<<<<<< Updated upstream
             val repository = Repository()
             val viewModelFactory = MainViewModelFactory(repository)
             viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
@@ -89,6 +121,11 @@ class UnderlyingActivity : AppCompatActivity() {
             viewModel.myResponse.observe(this, Observer { response ->
                 Log.d("Response", response.result.toString())
             })
+=======
+            //this is to test the GET is should show in LogCat
+
+
+>>>>>>> Stashed changes
 
 
         }
