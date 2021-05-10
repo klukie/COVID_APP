@@ -1,19 +1,19 @@
 package com.klukie.android.covid_19
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.klukie.android.covid_19.model.CovidPost
 import com.klukie.android.covid_19.model.Post
 import com.klukie.android.covid_19.repository.Repository
 import kotlinx.android.synthetic.main.activity_underlying.*
 
 class UnderlyingActivity : AppCompatActivity() {
 
-    //these are the variables foe the GET test
-    private lateinit var viewModel: MainViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,31 +31,8 @@ class UnderlyingActivity : AppCompatActivity() {
         //create arrayList to store all underlying
         val underlyingList : MutableList<String> = ArrayList()
 
-
-        //TEST TEST TEST TEST
-        //should display on the bottom of the second page
-        //These are for the GET test
-        val repository = Repository()
-        val viewModelFactory = MainViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory)
-            .get(MainViewModel::class.java)
-        viewModel.getPost()
-        viewModel.myResponse.observe(this, Observer { response ->
-            if (response.isSuccessful) {
-                Log.d("Response", response.body()?.userId.toString())
-                tv3.text = response.body()?.userId.toString()
-                Log.d("Response", response.body()?.id.toString())
-                tv2.text = response.body()?.id.toString()
-                Log.d("Response", response.body()?.title!!)
-                tv1.text = response.body()?.title!!
-                Log.d("Response", response.body()?.body!!)
-            } else {
-                Log.d("Response", response.errorBody().toString())
-            }
-        })
-
-
-
+        // Creating A HashMap that will store all the Underlying Conditions
+        val underlyingHashMap: HashMap<String, Int> = HashMap()
 
         //after button pushed ifChecked will populate the array
         //everytime button is pushed it will clear the array and start fresh
@@ -64,87 +41,125 @@ class UnderlyingActivity : AppCompatActivity() {
 
             //The first 3 elements are sex, age and ethnicity
             if (sex != null) {
-                underlyingList.add(sex)
+                if(sex == "Male") {
+                    underlyingHashMap.put("sex", 2)
+                }
+                else {
+                    underlyingHashMap.put("sex", 1)
+                }
             }
             if (age != null) {
-                underlyingList.add(age)
+                underlyingHashMap.put("age", age.toInt())
             }
-            if (ethnicity != null) {
-                underlyingList.add(ethnicity)
-            }
+            //Don't Care about ethnicity for post request
+//            if (ethnicity != null) {
+//                underlyingList.add(ethnicity)
+//            }
             if(asthmaBox.isChecked) {
-                underlyingList.add("Asthma")
+                underlyingHashMap.put("asthma", 1)
+            }
+            else {
+                underlyingHashMap.put("asthma", 2)
             }
             if(cardiovascularBox.isChecked) {
-                underlyingList.add("Cardiovascular disease")
+                underlyingHashMap.put("cardiovascular", 1)
             }
+            else {
+                underlyingHashMap.put("cardiovascular", 2)
+            }
+
+
             if(chronicLungBox.isChecked) {
-                underlyingList.add("Chronic lung disease")
+                underlyingHashMap.put("tobacco", 1)
             }
+            else {
+                underlyingHashMap.put("tobacco", 2)
+            }
+
+
             if(immuneBox.isChecked) {
-                underlyingList.add("Immune suppression")
+                underlyingHashMap.put("inmsupr", 1)
+            }
+            else {
+                underlyingHashMap.put("inmsupr", 2)
             }
             if(metabolicBox.isChecked) {
-                underlyingList.add("Metabolic disease")
+                underlyingHashMap.put("intubed", 1)
             }
+            else {
+                underlyingHashMap.put("intubed", 2)
+            }
+
             if(neurologicBox.isChecked) {
-                underlyingList.add("Neurologic disease")
+                underlyingHashMap.put("icu", 1)
+            }
+            else {
+                underlyingHashMap.put("icu", 2)
             }
             if(otherBox.isChecked) {
-                underlyingList.add("Other disease")
+                underlyingHashMap.put("other_disease", 1)
             }
+            else {
+                underlyingHashMap.put("other_disease", 2)
+            }
+
             if(autoimmuneBox.isChecked) {
-                underlyingList.add("Autoimmune disease ")
+                underlyingHashMap.put("copd", 1)
             }
+            else {
+                underlyingHashMap.put("copd", 2)
+            }
+
             if(obesityBox.isChecked) {
-                underlyingList.add("Obesity")
+                underlyingHashMap.put("obesity", 1)
             }
+            else {
+                underlyingHashMap.put("obesity", 2)
+            }
+
             if(pregnancyBox.isChecked) {
-                underlyingList.add("Pregnancy")
+                underlyingHashMap.put("pregnancy", 1)
             }
+            else {
+                underlyingHashMap.put("pregnancy", 2)
+            }
+
             if(renalBox.isChecked) {
-                underlyingList.add("Renal disease")
+                underlyingHashMap.put("renal_chronic", 1)
             }
+            else {
+                underlyingHashMap.put("renal_chronic", 2)
+            }
+
             if(gastrointestinalBox.isChecked) {
-                underlyingList.add("Gastrointestinal/liver disease")
+                underlyingHashMap.put("diabetes", 1)
             }
+            else {
+                underlyingHashMap.put("diabetes", 2)
+            }
+
             if(hypertensionBox.isChecked) {
-                underlyingList.add("Hypertension")
+                underlyingHashMap.put("hypertension", 1)
             }
-            for (item in underlyingList)
-                println(item)
+            else {
+                underlyingHashMap.put("hypertension", 2)
+            }
 
+            // These are extras
+            underlyingHashMap.put("patient_type", 2)
+            underlyingHashMap.put("pneumonia", 2)
+            underlyingHashMap.put("contact_other_covid", 2)
+            underlyingHashMap.put("covid_res", 2)
 
-            val repository = Repository()
-            val viewModelFactory = MainViewModelFactory(repository)
-            viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-            viewModel.getPost()     //This will get the result from the function
-            //
-            viewModel.myResponse.observe(this, Observer { response ->
-                Log.d("Response", response.toString())
-            })
-
-
-            //-------------------------------------
-            //POST POST POST
-            //TEST TEST TEST
-            val myPost = Post(10, 2, "Ryan", "Software Class")
-            viewModel.pushPost(myPost)
-            viewModel.myResponse.observe(this, Observer { response ->
-                if (response.isSuccessful) {
-                    Log.d("Main", response.body()?.userId.toString())
-                    Log.d("Main", response.code().toString())
-                    Log.d("Main", response.message())
-                } else {
-                    Log.d("Response", response.errorBody().toString())
-                }
-            })
-
-
-
-
+            //Go to the Result Activity
+            openResultActivity(underlyingHashMap)
         }
-
     }
 
+    //method to inflate next activity and pass data
+    private fun openResultActivity(underlyingHashMap: HashMap<String, Int>) {
+        val intent : Intent =  Intent(this, ResultActivity::class.java)
+        intent.putExtra("underlyingHashMap", underlyingHashMap)
+        startActivity(intent)
+    }
 }
