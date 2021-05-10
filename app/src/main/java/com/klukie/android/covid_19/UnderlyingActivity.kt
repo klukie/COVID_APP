@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.klukie.android.covid_19.model.CovidPost
 import com.klukie.android.covid_19.model.Post
 import com.klukie.android.covid_19.repository.Repository
 import kotlinx.android.synthetic.main.activity_underlying.*
@@ -32,31 +33,6 @@ class UnderlyingActivity : AppCompatActivity() {
 
         // Creating A HashMap that will store all the Underlying Conditions
         val underlyingHashMap: HashMap<String, Int> = HashMap()
-
-        //TEST TEST TEST TEST
-        //should display on the bottom of the second page
-        //These are for the GET test
-        val repository = Repository()
-        val viewModelFactory = MainViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory)
-            .get(MainViewModel::class.java)
-        viewModel.getPost()
-        viewModel.myResponse.observe(this, Observer { response ->
-            if (response.isSuccessful) {
-                Log.d("Response", response.body()?.userId.toString())
-                tv3.text = response.body()?.userId.toString()
-                Log.d("Response", response.body()?.id.toString())
-                tv2.text = response.body()?.id.toString()
-                Log.d("Response", response.body()?.title!!)
-                tv1.text = response.body()?.title!!
-                Log.d("Response", response.body()?.body!!)
-            } else {
-                Log.d("Response", response.errorBody().toString())
-            }
-        })
-
-
-
 
         //after button pushed ifChecked will populate the array
         //everytime button is pushed it will clear the array and start fresh
@@ -178,8 +154,6 @@ class UnderlyingActivity : AppCompatActivity() {
             val repository = Repository()
             val viewModelFactory = MainViewModelFactory(repository)
             viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-            viewModel.getPost()     //This will get the result from the function
-            //
             viewModel.myResponse.observe(this, Observer { response ->
                 Log.d("Response", response.toString())
             })
@@ -188,20 +162,40 @@ class UnderlyingActivity : AppCompatActivity() {
             //-------------------------------------
             //POST POST POST
             //TEST TEST TEST
-            val myPost = Post(10, 2, "Ryan", "Software Class")
-            viewModel.pushPost(myPost)
+            var myPost = CovidPost(
+                underlyingHashMap["age"],
+                underlyingHashMap["sex"],
+                underlyingHashMap["patient_type"],
+                underlyingHashMap["intubed"],
+                underlyingHashMap["pneumonia"],
+                underlyingHashMap["pregnancy"],
+                underlyingHashMap["diabetes"],
+                underlyingHashMap["copd"],
+                underlyingHashMap["asthma"],
+                underlyingHashMap["inmsupr"],
+                underlyingHashMap["hypertension"],
+                underlyingHashMap["other_disease"],
+                underlyingHashMap["cardiovascular"],
+                underlyingHashMap["obesity"],
+                underlyingHashMap["renal_chronic"],
+                underlyingHashMap["tobacco"],
+                underlyingHashMap["covid_res"],
+                underlyingHashMap["contact_other_covid"],
+                underlyingHashMap["icu"],
+            )
+
+            viewModel.pushPostCovid(myPost)
             viewModel.myResponse.observe(this, Observer { response ->
+
                 if (response.isSuccessful) {
-                    Log.d("Main", response.body()?.userId.toString())
+//                    Log.d("Main", response.body()?.userId.toString())
                     Log.d("Main", response.code().toString())
                     Log.d("Main", response.message())
+                    tv3.text = response.body()?.Result.toString()
                 } else {
                     Log.d("Response", response.errorBody().toString())
                 }
             })
-
-
-
 
         }
 
