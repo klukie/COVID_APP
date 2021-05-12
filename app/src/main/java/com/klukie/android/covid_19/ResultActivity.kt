@@ -58,10 +58,17 @@ class ResultActivity : AppCompatActivity() {
         viewModel.myResponse.observe(this, Observer { response ->
 
             if (response.isSuccessful) {
-//                    Log.d("Main", response.body()?.userId.toString())
+                val result = response.body()?.Result?.toInt()
+                if(result == 0) {
+                    textView2.text = "Not Likely"
+                }
+                else {
+                    textView2.text = "Likely"
+                }
+                textView3.text = "{ "+ "Result: " + response.body()?.Result.toString() + " }"
                 Log.d("Main", response.code().toString())
                 Log.d("Main", response.message())
-                textView2.text = response.body()?.Result.toString()
+                Log.d("Main", "BODY: "+ response.body().toString())
             } else {
                 Log.d("Response", response.errorBody().toString())
             }

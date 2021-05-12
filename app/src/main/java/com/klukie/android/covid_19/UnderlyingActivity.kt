@@ -45,11 +45,12 @@ class UnderlyingActivity : AppCompatActivity() {
                     underlyingHashMap.put("sex", 2)
                 }
                 else {
-                    underlyingHashMap.put("sex", 1)
+                    underlyingHashMap["sex"] = 1
                 }
             }
             if (age != null) {
-                underlyingHashMap.put("age", age.toInt())
+                underlyingHashMap["age"] = age.toInt()
+                Log.d("Main", "AGE: $age")
             }
             //Don't Care about ethnicity for post request
 //            if (ethnicity != null) {
@@ -146,10 +147,10 @@ class UnderlyingActivity : AppCompatActivity() {
             }
 
             // These are extras
-            underlyingHashMap.put("patient_type", 2)
-            underlyingHashMap.put("pneumonia", 2)
-            underlyingHashMap.put("contact_other_covid", 2)
-            underlyingHashMap.put("covid_res", 2)
+            underlyingHashMap.put("patient_type", 1)
+            underlyingHashMap.put("pneumonia", 1)
+            underlyingHashMap.put("contact_other_covid", 1)
+            underlyingHashMap.put("covid_res", 1)
 
             //Go to the Result Activity
             openResultActivity(underlyingHashMap)
