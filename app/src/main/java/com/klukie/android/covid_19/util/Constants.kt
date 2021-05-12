@@ -7,5 +7,6 @@ class Constants {
         // watch the '/'
 //        const val BASE_URL = "http://jsonplaceholder.typicode.com/"
         const val BASE_URL = "https://covidwebserviceapinodejs.herokuapp.com/"
+//        const val BASE_URL = "https://78r2cneiod.execute-api.us-east-2.amazonaws.com/"
     }
 }
